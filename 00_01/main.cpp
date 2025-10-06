@@ -1,7 +1,8 @@
 #include <iostream>
 
-int main() {
-    char str[] = "ƒGƒƒ‰ƒ‹ƒh";
+int main()
+{
+    char str[] = "ã‚¨ãƒ¡ãƒ©ãƒ«ãƒ‰";
     printf("%s", str);
     return 0;
 }

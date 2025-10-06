@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <list>
 #include <stdio.h>
 using namespace std;
@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 
-    // ‰wˆê——‚ğ‚Ü‚Æ‚ß‚éƒŠƒXƒg
+    // é§…ä¸€è¦§ã‚’ã¾ã¨ã‚ã‚‹ãƒªã‚¹ãƒˆ
     list<const char*> lst {
         "Tokyo", "Kanda", "Akihabara", "Okachimachi", "Ueno",
         "Uguisudani", "Nippori", "Tabata", "Komagome", "Sugamo",
@@ -16,7 +16,7 @@ int main()
         "Hamamatsucho", "Shimbashi", "Yurakucho"
     };
 
-    //  1970”N‚Ì‰wˆê——
+    //  1970å¹´ã®é§…ä¸€è¦§
     cout << "Yamanote Line (1970):\n";
     for (list<const char*>::iterator it = lst.begin(); it != lst.end(); ++it) {
         cout << *it;
@@ -28,7 +28,7 @@ int main()
     }
     cout << "\n\n";
 
-    // ¼“ú•é—¢‚ğ‘}“ü
+    // è¥¿æ—¥æš®é‡Œã‚’æŒ¿å…¥
     for (list<const char*>::iterator it = lst.begin(); it != lst.end(); ++it) {
         if (strcmp(*it, "Tabata") == 0) {
             lst.insert(it, "Nishi-Nippori");
@@ -36,7 +36,7 @@ int main()
         }
     }
 
-    // 2019”N‚Ì‰wˆê——
+    // 2019å¹´ã®é§…ä¸€è¦§
     cout << "Yamanote Line (2019):\n";
     for (list<const char*>::iterator it = lst.begin(); it != lst.end(); ++it) {
         cout << *it;
@@ -48,7 +48,7 @@ int main()
     }
     cout << "\n\n";
 
-    //  ‚—ÖƒQ[ƒgƒEƒFƒC‚ğ‘}“ü
+    //  é«˜è¼ªã‚²ãƒ¼ãƒˆã‚¦ã‚§ã‚¤ã‚’æŒ¿å…¥
     for (list<const char*>::iterator it = lst.begin(); it != lst.end(); ++it) {
         if (strcmp(*it, "Shinagawa") == 0) {
             lst.insert(it, "Takanawa Gateway");
@@ -56,7 +56,7 @@ int main()
         }
     }
 
-    // 2022”N‚Ì‰wˆê——
+    // 2022å¹´ã®é§…ä¸€è¦§
     cout << "Yamanote Line (2022):\n";
     for (list<const char*>::iterator it = lst.begin(); it != lst.end(); ++it) {
         cout << *it;

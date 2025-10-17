@@ -1,6 +1,5 @@
 #include <iostream> 
 
-
 template <typename T> 
 T Min(T a, T b)
 {

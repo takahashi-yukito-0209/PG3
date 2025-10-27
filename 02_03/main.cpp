@@ -1,8 +1,8 @@
 #include <chrono> 
+#include <cstdio> 
 #include <cstdlib> 
 #include <ctime> 
-#include <iostream> 
-#include <thread>
+#include <thread> 
 
 using namespace std;
 
@@ -12,16 +12,16 @@ using namespace std;
 //------------------------------------------------------
 void ShowResult(int roll, int userGuess)
 {
-    cout << "サイコロの出目は「"<< roll <<"」でした！" << endl;
+    printf("サイコロの出目は「%d」でした！\n", roll);
 
     // 出目が奇数なら roll % 2 == 1、偶数なら roll % 2 == 0
     int result = roll % 2;
 
-    // 判定
+    // 判定結果を表示
     if (result == userGuess) {
-        cout << "正解です！" << endl;
+        printf("正解です！\n");
     } else {
-        cout << "不正解です..." << endl;
+        printf("不正解です...\n");
     }
 }
 
@@ -31,7 +31,7 @@ void ShowResult(int roll, int userGuess)
 //------------------------------------------------------
 void DelayReveal(void (*fn)(int, int), unsigned int delayMs, int roll, int userGuess)
 {
-    cout << "結果を発表します..." << endl;
+    printf("結果を発表します...\n");
     this_thread::sleep_for(chrono::milliseconds(delayMs)); // 指定時間待機
     fn(roll, userGuess); // 関数ポインタで呼び出し
 }
@@ -44,18 +44,23 @@ int main()
     // 乱数の初期化（現在時刻をシードとして使用）
     srand((unsigned int)time(NULL));
 
-    int userGuess;
+    int userGuess = 0; 
 
     // 入力案内
-    cout << "【サイコロ奇数偶数当てゲーム】" << endl;
-    cout << "奇数（半）なら 1、偶数（丁）なら 0 を入力してください: ";
-    cin >> userGuess;
+    printf("【サイコロ奇数偶数当てゲーム】\n");
+    printf("奇数（半）なら 1、偶数（丁）なら 0 を入力してください: ");
+
+    // 入力受付
+    if (scanf_s("%d", &userGuess) != 1) {
+        printf("入力エラーです。\n");
+        return 1;
+    }
 
     // 出目の生成（1～6）
     int roll = rand() % 6 + 1;
 
     // 3秒待って結果を表示
-    DelayReveal(ShowResult, 1000, roll, userGuess);
+    DelayReveal(ShowResult, 3000, roll, userGuess);
 
     return 0;
 }

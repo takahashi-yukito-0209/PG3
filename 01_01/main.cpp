@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <cstring>
 using namespace std;
 
 int main()
@@ -50,7 +51,9 @@ int main()
     //  高輪ゲートウェイを挿入
     for (list<const char*>::iterator it = lst.begin(); it != lst.end(); ++it) {
         if (strcmp(*it, "Shinagawa") == 0) {
-            lst.insert(it, "Takanawa Gateway");
+            list<const char*>::iterator nextIt = it;
+            ++nextIt;
+            lst.insert(nextIt, "Takanawa Gateway");
             break;
         }
     }

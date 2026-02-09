@@ -1,21 +1,33 @@
-#include <chrono>
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
-#include <functional>
-#include <thread>
+#include <Windows.h>
 
 using namespace std;
 
 //------------------------------------------------------
 // 遅延実行関数：DelayReveal()
-// 指定時間（ミリ秒）待ってからラムダ関数を呼び出す
+// 指定時間（ミリ秒）待ってから C スタイルの関数ポインタを呼び出す
 //------------------------------------------------------
-void DelayReveal(function<void()> fn, unsigned int delayMs)
+void DelayReveal(void (*fn)(int, int), unsigned int delayMs, int roll, int userGuess)
 {
     printf("結果を発表します...\n");
-    this_thread::sleep_for(chrono::milliseconds(delayMs)); // 指定時間待機
-    fn(); // 関数（ラムダ）を呼び出す
+    Sleep(delayMs); // 指定時間待機（Windows API）
+    fn(roll, userGuess); // 関数ポインタを呼び出す
+}
+
+// 結果表示関数（関数ポインタとして渡す）
+void Reveal(int roll, int userGuess)
+{
+    printf("サイコロの出目は「%d」でした！\n", roll);
+
+    int result = roll % 2;
+
+    if (result == userGuess) {
+        printf("正解です！\n");
+    } else {
+        printf("不正解です...\n");
+    }
 }
 
 //------------------------------------------------------
@@ -41,21 +53,8 @@ int main()
     // 出目の生成（1～6）
     int roll = rand() % 6 + 1;
 
-    // ラムダ式で結果表示関数を定義
-    auto showResult = [=]() {
-        printf("サイコロの出目は「%d」でした！\n", roll);
-
-        int result = roll % 2;
-
-        if (result == userGuess) {
-            printf("正解です！\n");
-        } else {
-            printf("不正解です...\n");
-        }
-    };
-
-    // 3秒待って結果を表示（ラムダ式を渡す）
-    DelayReveal(showResult, 3000);
+    // 3秒待って結果を表示（関数ポインタを渡す）
+    DelayReveal(Reveal, 3000, roll, userGuess);
 
     return 0;
 }
